@@ -1,0 +1,25 @@
+name: Pipeline
+on: 
+  push:
+    branches:
+    - main
+
+env:
+  GIT_COMMIT: ${{ github.sha }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+
+jobs:
+  build-frontend:
+    name: Build and publish frontend image 
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build docker image
+        run: ./ci/build-frontend.sh
+  build-backend:
+    name: Build and publish backend image
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build docker image
+        run: ./ci/build-backend.sh
