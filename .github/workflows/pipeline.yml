@@ -41,5 +41,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-      - run: kubectl --kubeconfig kubeconfig apply -f kubenetesmanifests
+      - run: kubectl --kubeconfig kubeconfig apply -f kubernetesmanifests
   
