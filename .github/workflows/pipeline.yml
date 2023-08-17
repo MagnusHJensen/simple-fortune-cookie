@@ -41,5 +41,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-      - run: kubectl --kubeconfig kubeconfig apply -f kubernetesmanifests
+      - run: envsubst < kubernetesmanifests/frontend-deployment.yml | kubectl --kubeconfig kubeconfig apply -f -
+      - run: kubectl --kubeconfig kubeconfig apply -f kubernetesmanifests/backend-deployment.yml
+      - run: kubectl --kubeconfig kubeconfig apply -f kubernetesmanifests/backend-svc.yaml
+      - run: kubectl --kubeconfig kubeconfig apply -f kubernetesmanifests/frontend-svc.yaml
   

@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/magnushjensen/backend:latest
+          imagePullPolicy: Always
           name: backend
   strategy:
     rollingUpdate:

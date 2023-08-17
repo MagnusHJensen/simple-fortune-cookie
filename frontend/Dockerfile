@@ -10,4 +10,4 @@ RUN cd /frontend && go build -o gofrontend
 FROM alpine
 WORKDIR /frontend
 COPY --from=builder /frontend/ /frontend/
-ENTRYPOINT ./gofrontend
+ENTRYPOINT ["./gofrontend"]
