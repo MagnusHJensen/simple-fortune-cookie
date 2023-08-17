@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: redis
+  labels: 
+    app: redis-db
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: redis-db
+  template:
+    metadata:
+      labels:
+        app: redis-db
+    spec:
+      containers:
+        - image: redis:latest
+          name: redis
+          ports: 
+            - containerPort: 9000
+          env: 
+          - name: REDIS_USER
+            valueFrom: 
+              configMapKeyRef:
+                name: redis-config
+                key: DB_USER
+          - name: REDIS_DB
+            valueFrom:
+              configMapKeyRef:
+                name: redis-config
+                key: DB_NAME 
+          - name: REDIS_PASS
+            valueFrom:
+              secretKeyRef:
+                name: redis-secret
+                key: DB_PASS

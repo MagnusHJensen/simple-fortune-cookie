@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  DB_NAME: redis-db
+  DB_USER: redis-user
+  DB_HOST: redis
+  DB_PORT: "6379"
