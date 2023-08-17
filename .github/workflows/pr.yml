@@ -1,8 +1,6 @@
 name: PR-workflow
 on: 
   pull_request:
-    paths: 
-      - "*"
 
 jobs:
   Test-frontend:
