@@ -6,6 +6,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 
 FROM debian as app
+WORKDIR ./app
 COPY --from=builder /usr/src/app/ ./app
 EXPOSE 8080 
-ENTRYPOINT ["./app/frontend"] 
+ENTRYPOINT ["./frontend"] 
