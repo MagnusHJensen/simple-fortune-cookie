@@ -22,4 +22,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build docker image
-        run: ./ci/build-backend.sh
+        run: chmod +x ./ci/build-backend.sh && ./ci/build-backend.sh
