@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build docker image
-        run: ./ci/build-frontend.sh
+        run: chmod +x ./ci/build-frontend.sh && ./ci/build-frontend.sh
   build-backend:
     name: Build and publish backend image
     runs-on: ubuntu-22.04
