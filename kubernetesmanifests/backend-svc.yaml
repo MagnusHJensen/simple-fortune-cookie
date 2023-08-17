@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: backend
   labels:
-    app: deployment-backend
+    run: backend
 spec:
   selector:
-    app: deployment-backend
+    run: backend
   ports:
   - port: 9000
     protocol: TCP

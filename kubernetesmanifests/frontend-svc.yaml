@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
+  name: frontend
   labels:
-    app: deployment-frontend
+    run: frontend
 spec:
   selector:
-    app: deployment-frontend
+    run: frontend
   ports:
-  - port: 80
+  - port: 8080
     protocol: TCP
     targetPort: 8080
   type: NodePort
