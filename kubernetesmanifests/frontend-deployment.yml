@@ -15,7 +15,8 @@ spec:
         run: frontend
     spec:
       containers:
-        - image: ghcr.io/magnushjensen/frontend:latest
+        - image: ghcr.io/magnushjensen/frontend:$GIT_COMMIT
+          imagePullPolicy: Always
           name: frontend
           env:
           - name: BACKEND_PORT
