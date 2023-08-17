@@ -1,11 +1,13 @@
-FROM golang:1.20 as builder
-WORKDIR /usr/src/app
-COPY go.mod ./
+# build stage
+FROM golang:1.19 as builder
+WORKDIR /frontend
+COPY . /frontend
+ENV CGO_ENABLED=0
 RUN go mod download && go mod verify
-COPY . .
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+RUN cd /frontend && go build -o gofrontend
 
-FROM debian as app
-COPY --from=builder /usr/src/app/ ./app
-EXPOSE 8080 
-ENTRYPOINT ["./app/frontend"] 
+# run frontend stage
+FROM alpine
+WORKDIR /frontend
+COPY --from=builder /frontend/ /frontend/
+ENTRYPOINT ./gofrontend
